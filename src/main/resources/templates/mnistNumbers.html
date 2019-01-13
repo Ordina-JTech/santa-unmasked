@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+</head>
+<body xmlns:th="http://www.thymeleaf.org">
+    <canvas id="canvas" width="280" height="280" style="border: 1px solid"></canvas>
+    <br/>
+    <button id="clear">Clear Canvas</button>
+    <button id="send">Classify</button>
+
+    <br/>
+    <div id="predictions" th:fragment="predictions">
+    	<span th:each="prediction : ${predictions}">
+			<p th:text="${'label: ' + prediction.label + ',  score: ' + prediction.percentage}"></p>
+    	</span>
+    </div>
+
+    <script type="text/javascript" src="mnist/draw.js"></script>
+</body>

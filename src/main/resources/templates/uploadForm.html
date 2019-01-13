@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/santa/opencv.js"></script>
+<script type="text/javascript" src="/santa/utils.js"></script>
+<body>
+<div style="width:800px; margin:0 auto;">
+
+    <video id="video" width="320" height="240" autoplay="true"></video>
+    <canvas id="canvas" width="320" height="240"></canvas>
+
+    <div id="predictions" th:fragment="predictions">
+        <table>
+            <tr th:if="${predictions != null}">
+                <td>
+                    <img th:if="${predictions[1].percentage &gt; 0.5}" src="/santa/santadetected.png"></img>
+                </td>
+            </tr>
+            <tr th:if="${predictions != null}">
+                <td>
+                    <h1 th:if="${predictions[0].percentage &gt; 0.5}" th:text="${'No Santa detected!'}" style="color:blue"></h1>
+                    <h1 th:if="${predictions[1].percentage &gt; 0.5}" th:text="${'SANTA DETECTED!'}" style="color:red"></h1>
+
+                    <p th:text="${'label: ' + predictions[0].label + ',  score: ' + predictions[0].percentage}"></p>
+                    <p th:text="${'label: ' + predictions[1].label + ',  score: ' + predictions[1].percentage}"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/santa/webcam.js}"/>
+
+</body>
+</html>
