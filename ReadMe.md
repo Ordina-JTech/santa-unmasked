@@ -92,7 +92,6 @@ MultiLayerConfiguration networkConf = new NeuralNetConfiguration.Builder()
     //TODO Assignment 1.2b
     //TODO Assignment 1.2c
     //TODO Assignment 1.2d
-    //TODO Assignment 1.2e
     .setInputType(InputType.convolutionalFlat(HEIGHT, WIDTH, CHANNELS))
     .build();
 ```
@@ -248,7 +247,7 @@ public SantaHandwritingClassifier() {
     try {
 
         File networkFile = new File("MNISTNetwork.zip");     // The location where we have saved the neural network
-        network = ModelSerializer.restoreMultilayerNetwork(networkFile);
+        network = ModelSerializer.restoreMultiLayerNetwork(networkFile);
         labels = ModelSerializer.getObjectFromFile(networkFile, "labels"); // retrieve the 'labels' object set earlier
 
     } catch(IOException ioe) {
@@ -340,7 +339,7 @@ ZooModel zooModel = VGG16.builder().build();
 ComputationGraph vgg16 = (ComputationGraph) zooModel.initPretrained();
 ```
 
-### VGG16 Classifcation.
+### VGG16 Classification.
 Below is the architecture of the VGG16 ImageNet neural network. 
 
 ![](images/vgg16architecture.jpg)
@@ -398,6 +397,7 @@ The Softmax activation function will make sure that the output
 ###Freezing the weights
 Now that we have created the output layer, we should include it in the network architecture. Furthermore, we need to freeze all the weight before the FC2 layer. We can do this with the following code:
 
+#### Assignment 2.4
 * Copy this code to the **TransferLearningTrainer.java** class 
 
 
@@ -455,7 +455,7 @@ The TRAIN\_PERC determines what percentage of the data should be in the training
 
 Before we start training, we want to evaluate how well our untrained network is performing on the test set. We can do this with the help of the Evaluation class.
 
-####Assignment 2.7
+####Assignment 2.6
 * Copy this code to the **TransferLearningTrainer.java** class 
 
 
@@ -484,7 +484,7 @@ This question that this answers is if the network predicted Santa, how often was
 
 **F1 Score**: The weighted average of Precision and Recall. Therefore, this score takes both false positives and false negatives into account. Intuitively it is not as easy to understand as accuracy, but F1 is usually more useful than accuracy, especially if you have an uneven class distribution. Accuracy works best if false positives and false negatives have similar cost. If the cost of false positives and false negatives are very different, it’s better to look at both Precision and Recall. 
 
-####Assignment 2.8
+####Assignment 2.7
 * Copy this code to the **TransferLearningTrainer.java** class 
 
 
@@ -531,7 +531,7 @@ Only evaluate the network after 10 batches have been processed.
 ### Storing the network
 We also want to store our freshly trained network and its weights. DL4J has some nice functionality in order to do so. 
 
-####Assignment 2.9
+####Assignment 2.8
 * Copy this code to the **TransferLearningTrainer.java** class 
 
 
@@ -545,12 +545,12 @@ This code lets us write the model to a zip file, and adds the labels of the diff
 
 
 
-####Assignment 2.10
+####Assignment 2.9
 * You can now run the **TransferLearningTrainer.java** class and train you network. Look at the evaluation metrics and confusion matrix to see how your network is performing.
 
 If you get a memory exception, try lowering the BATCH_SIZE.
 
-####Assignment 2.11
+####Assignment 2.10
 After training your network, we can imagine you want to see how it performs and if its able to detect Santa! The classification of your webcam images is done in the SantaClassifier.java.
 In order to detect Santa, we need to load our freshly trained model.
 

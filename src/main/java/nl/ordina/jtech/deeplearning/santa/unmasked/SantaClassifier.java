@@ -26,7 +26,7 @@ public class SantaClassifier {
 
     SantaClassifier() {
 
-            //TODO: Assignment 2.11: Load Network
+            //TODO: Assignment 2.10: Load Network
 
 
 

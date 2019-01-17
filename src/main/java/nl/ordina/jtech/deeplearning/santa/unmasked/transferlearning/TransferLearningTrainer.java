@@ -67,7 +67,7 @@ public class TransferLearningTrainer {
 
         log.info("Model build complete");
 
-        //TODO: Assignment 2.9: Store the trained network
+        //TODO: Assignment 2.8: Store the trained network
 
 
         log.info("Model saved");
